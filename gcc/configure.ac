@@ -1482,7 +1482,8 @@ else
 	CC="${CC_FOR_BUILD}" CFLAGS="${CFLAGS_FOR_BUILD}" \
 	${realsrcdir}/configure \
 		--enable-languages=${enable_languages-all} \
-		--target=$target_alias --host=$build_alias --build=$build_alias
+		--target=$target_alias --host=$build_alias --build=$build_alias \
+		--enable-obsolete
 	CFLAGS="${saved_CFLAGS}"
 
 	# We just finished tests for the build machine, so rename
