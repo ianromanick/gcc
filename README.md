@@ -57,9 +57,9 @@ The first major piece of software to build is binutils.  At least as of `b3a01ce
 
         mkdir binutils-gdb-sparc-sun-solaris2.6
         cd binutils-gdb-sparc-sun-solaris2.6
-        ../binutils-gdb/configure --prefix=$HOME/sparc --target=sparc-sun-solaris2 \
+        ../binutils-gdb/configure --prefix=$HOME/sparc --target=sparc-sun-solaris2.6 \
             --host=$MACHTYPE --build=$MACHTYPE --disable-gold --disable-gdb \
-	     --disable-multilib
+             --disable-multilib
         make && make install
 
 The gold linker is disabled because it won't be necessary on the target, and GDB is disabled because it's not useful to run GDB for the target system on the build system.  Multilib is disabled because 64-bit libraries are not possible on the target platform.
@@ -98,11 +98,11 @@ Building the cross-compiler proceeds in a manner similar to building the cross-b
         cd ..
         mkdir gcc-sparc-sun-solaris2.6
         cd gcc-sparc-sun-solaris2.6
-        ../gcc/configure --prefix=~/sparc --target=sparc-sun-solaris2 \
+        ../gcc/configure --prefix=~/sparc --target=sparc-sun-solaris2.6 \
             --host=$MACHTYPE --build=$MACHTYPE --enable-obsolete \
-	    --enable-languages='c,c++'
+            --enable-languages='c,c++'
         make MAKEINFO=/usr/bin/true && \
-	    make MAKEINFO=/usr/bin/true install
+            make MAKEINFO=/usr/bin/true install
 
 Only the compilers for C and C++ are built because those are the only languages needed to build the native compiler.
 
@@ -240,7 +240,7 @@ GCC is built in a very similar manner as before.  The major additions are the `-
         ../gcc/configure --prefix=/opt/local --target=sparc-sun-solaris2.6 \
             --host=sparc-sun-solaris2.6 --build=$MACHTYPE --enable-obsolete \
             --enable-languages='c,c++' --with-gmp=/opt/local \
-            --with-mpfr=/opt/local
+            --with-mpfr=/opt/local \
             --with-gnu-ld --with-gnu-as
         make MAKEINFO=/usr/bin/true && make MAKEINFO=/usr/bin/true install
 
